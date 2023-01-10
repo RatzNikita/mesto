@@ -1,0 +1,6 @@
+.elements {
+    max-width: calc(100% - 400px);
+    margin: 0 auto 0;
+    justify-content: space-between;
+    align-content: space-between;
+}
