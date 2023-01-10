@@ -1,0 +1,7 @@
+.profile__text-content {
+    display: grid;
+    grid-template-areas:
+    "title edit"
+    "subtitle subtitle";
+    gap: 16px 25px
+}

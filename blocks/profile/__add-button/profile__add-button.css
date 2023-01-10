@@ -1,0 +1,13 @@
+.profile__add-button {
+    width: 150px;
+    height: 50px;
+    background: url("../../../images/add-icon.svg") no-repeat center;
+    border: 1px solid #FFFFFF;
+    justify-self: right;
+    margin-left: auto;
+    transition: .3s ease-out;
+}
+
+.profile__add-button:hover {
+    opacity: 0.5;
+}
