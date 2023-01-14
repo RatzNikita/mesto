@@ -1,17 +1,22 @@
 .profile {
-    max-width: calc(100% - 400px);
     margin: 0 auto 0;
     color: white;
     display: flex;
     align-items: center;
     padding: 35px 0 45px;
-    border-top: 1px solid #545454;
+    flex-direction: column;
+    max-width: calc(100% - 40px);
 }
 
-@media (max-width: 425px) {
+@media (min-width: 768px) {
     .profile {
-        flex-direction: column;
-        max-width: calc(100% - 40px);
+        flex-direction: row;
+        max-width: calc(100% - 125px);
+    }
+}
 
+@media (min-width: 1280px) {
+    .profile {
+        max-width: calc(1280px - 400px);
     }
 }

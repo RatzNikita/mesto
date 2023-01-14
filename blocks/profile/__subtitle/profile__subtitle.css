@@ -3,16 +3,16 @@
     grid-area: subtitle;
     max-width: 336px;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
 
 }
 
-@media (max-width: 425px) {
+@media (min-width: 768px) {
     .profile__subtitle {
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 17px;
-        text-align: center;
+        text-align: start;
+        font-size: 18px;
+        line-height: 22px;
     }
 }
