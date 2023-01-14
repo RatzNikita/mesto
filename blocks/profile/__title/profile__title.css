@@ -5,6 +5,7 @@
     font-size: 27px;
     line-height: 33px;
     padding-left: 35px;
+    max-width: 100%;
 }
 
 @media (min-width: 768px) {

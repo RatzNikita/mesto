@@ -2,25 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Проектная работа для Яндекс.Практикума">
-    <meta name="keywords" content="html,css, js">
-    <meta name="author" content="Рац Никита">
-    <link rel="stylesheet" href="./pages/index.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Проектная работа для Яндекс.Практикума" name="description">
+    <meta content="html,css, js" name="keywords">
+    <meta content="Рац Никита" name="author">
+    <link href="./pages/index.css" rel="stylesheet">
     <title>Место</title>
 </head>
 <body>
 <div class="page">
     <header class="header">
-        <img class="header__logo"
-             src="images/logo-white.png"
-             alt="Логотип сайта">
+        <img alt="Логотип сайта"
+             class="header__logo"
+             src="images/logo-white.png">
     </header>
     <main class="content">
+        <div class="popup">
+            <div class="popup__container">
+                <h1 class="popup__title">Редактировать профиль</h1>
+                <input class="popup__input popup__input_type_name" placeholder="Имя" type="text">
+                <input class="popup__input popup__input_type_description" placeholder="О себе" type="text">
+                <button class="popup__submit-btn">Сохранить</button>
+                <button class="popup__close-btn"></button>
+            </div>
+        </div>
         <section class="profile">
-            <img class="profile__photo"
-                 src="images/custo.jpg"
-                 alt="Фотография Жака-Ива Кусто">
+            <img alt="Фотография Жака-Ива Кусто"
+                 class="profile__photo"
+                 src="images/custo.jpg">
             <div class="profile__text-content">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <p class="profile__subtitle">Исследователь океана</p>
@@ -31,54 +40,54 @@
         <section class="elements">
             <ul class="elements-list">
                 <li class="element">
-                    <img class="element__image"
-                         src="images/kirill-pershin-1088404-karachaevsk.jpg"
-                         alt="Изображение города Карачаевска">
+                    <img alt="Изображение города Карачаевска"
+                         class="element__image"
+                         src="images/kirill-pershin-1088404-karachaevsk.jpg">
                     <div class="element__content">
                         <h2 class="element__title">Карачаево-Черкесия</h2>
                         <div class="element__like-button"></div>
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image"
-                         src="images/kirill-pershin-1404681-elbrus.png"
-                         alt="Изображение горы Эльбрус">
+                    <img alt="Изображение горы Эльбрус"
+                         class="element__image"
+                         src="images/kirill-pershin-1404681-elbrus.png">
                     <div class="element__content">
                         <h2 class="element__title">Гора Эльбрус</h2>
                         <div class="element__like-button"></div>
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image"
-                         src="images/kirill-pershin-1556355-dombai.png"
-                         alt="Изображение горной территории Домбай">
+                    <img alt="Изображение горной территории Домбай"
+                         class="element__image"
+                         src="images/kirill-pershin-1556355-dombai.png">
                     <div class="element__content">
                         <h2 class="element__title">Домбай</h2>
                         <div class="element__like-button"></div>
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image"
-                         src="images/polina-belova-samarskaya-luka.jpg"
-                         alt="Изображение пейзажа национального парка Самарская Лука">
+                    <img alt="Изображение пейзажа национального парка Самарская Лука"
+                         class="element__image"
+                         src="images/polina-belova-samarskaya-luka.jpg">
                     <div class="element__content">
                         <h2 class="element__title">Самарская Лука</h2>
                         <div class="element__like-button"></div>
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image"
-                         src="images/alex-glebov-kamchatka.jpg"
-                         alt="Изображение пейзажа Камчатского края">
+                    <img alt="Изображение пейзажа Камчатского края"
+                         class="element__image"
+                         src="images/alex-glebov-kamchatka.jpg">
                     <div class="element__content">
                         <h2 class="element__title">Камчатка</h2>
                         <div class="element__like-button"></div>
                     </div>
                 </li>
                 <li class="element">
-                    <img class="element__image"
-                         src="images/julia-gavrilenko-krasnodarsky-crai.jpg"
-                         alt="Изображение гор Краснодарского края">
+                    <img alt="Изображение гор Краснодарского края"
+                         class="element__image"
+                         src="images/julia-gavrilenko-krasnodarsky-crai.jpg">
                     <div class="element__content">
                         <h2 class="element__title">Краснодарский край</h2>
                         <div class="element__like-button"></div>
@@ -91,5 +100,6 @@
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
 </div>
+<script src="scripts/script.js"></script>
 </body>
 </html>
