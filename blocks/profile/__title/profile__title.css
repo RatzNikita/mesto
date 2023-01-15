@@ -4,8 +4,11 @@
     font-weight: 500;
     font-size: 27px;
     line-height: 33px;
-    padding-left: 35px;
+    padding-left: 27px;
     max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {

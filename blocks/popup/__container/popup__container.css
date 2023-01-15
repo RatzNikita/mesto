@@ -3,17 +3,17 @@
     border-radius: 10px;
     position: relative;
     margin: 0 20px 0;
-    top: 25%;
+    top: calc(50% - (330px / 2));
     min-width: 282px;
-    min-height: 322px;
+    max-height: 322px;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
+
 }
 
 @media (min-width: 768px) {
     .popup__container {
         max-width: 430px;
         margin: 0 auto;
+        max-height: 330px;
     }
 }
