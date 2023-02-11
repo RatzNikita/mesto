@@ -30,79 +30,14 @@
         </section>
         <section class="elements">
             <ul class="elements-list">
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение города Карачаевска"
-                             class="element__image"
-                             src="images/kirill-pershin-1088404-karachaevsk.jpg">
-                        <div class="element__content">
-                            <h2 class="element__title">Карачаево-Черкесия</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение горы Эльбрус"
-                             class="element__image"
-                             src="images/kirill-pershin-1404681-elbrus.png">
-                        <div class="element__content">
-                            <h2 class="element__title">Гора Эльбрус</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение горной территории Домбай"
-                             class="element__image"
-                             src="images/kirill-pershin-1556355-dombai.png">
-                        <div class="element__content">
-                            <h2 class="element__title">Домбай</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение пейзажа национального парка Самарская Лука"
-                             class="element__image"
-                             src="images/polina-belova-samarskaya-luka.jpg">
-                        <div class="element__content">
-                            <h2 class="element__title">Самарская Лука</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение пейзажа Камчатского края"
-                             class="element__image"
-                             src="images/alex-glebov-kamchatka.jpg">
-                        <div class="element__content">
-                            <h2 class="element__title">Камчатка</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
-                <li class="elements-list__member">
-                    <article class="element">
-                        <img alt="Изображение гор Краснодарского края"
-                             class="element__image"
-                             src="images/julia-gavrilenko-krasnodarsky-crai.jpg">
-                        <div class="element__content">
-                            <h2 class="element__title">Краснодарский край</h2>
-                            <button class="element__like-button" type="button"></button>
-                        </div>
-                    </article>
-                </li>
+
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_change">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__form" name="profile-form">
@@ -119,7 +54,35 @@
             <button class="popup__close-btn" type="button"></button>
         </div>
     </div>
+    <div class="popup popup_type_add">
+        <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form class="popup__form" name="profile-form">
+                <input class="popup__input popup__input_type_name"
+                       placeholder="Название"
+                       type="text"
+                       name="name-input">
+                <input class="popup__input popup__input_type_description"
+                       placeholder="Ссылка на картинку"
+                       type="text"
+                       name="description-input">
+                <button class="popup__submit-btn" type="submit">Создать</button>
+            </form>
+            <button class="popup__close-btn" type="button"></button>
+        </div>
+    </div>
 </div>
+<template id="element-template">
+    <li class="elements-list__member">
+        <article class="element">
+            <img class="element__image">
+            <div class="element__content">
+                <h2 class="element__title"></h2>
+                <button class="element__like-button" type="submit"></button>
+            </div>
+        </article>
+    </li>
+</template>
 <script src="scripts/index.js"></script>
 </body>
 </html>
