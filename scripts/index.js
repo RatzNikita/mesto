@@ -2,23 +2,18 @@ const name = document.querySelector('.profile__title')
 const description = document.querySelector('.profile__subtitle')
 const cardContainer = document.querySelector('.elements-list')
 const cardTemplate = document.querySelector('#element-template').content;
-
 const editPopup = document.querySelector('.popup_type_edit')
 const editBtn = document.querySelector('.profile__edit-button')
-const editPopupCloseBtn = editPopup.querySelector('.popup__close-btn')
 const editPopupInputForm = editPopup.querySelector('.popup__form')
 const profileName = editPopup.querySelector('.popup__input_type_name')
 const profileDesc = editPopup.querySelector('.popup__input_type_description')
-
 const addBtn = document.querySelector('.profile__add-button')
 const addPopup = document.querySelector('.popup_type_add')
-const addPopupCloseBtn = addPopup.querySelector('.popup__close-btn')
 const addPopupInputForm = addPopup.querySelector('.popup__form')
 const cardName = addPopup.querySelector('.popup__input_type_name')
 const cardImg = addPopup.querySelector('.popup__input_type_description')
-
 const imagePopup = document.querySelector('.popup_type_img')
-const imagePopupCloseButton = imagePopup.querySelector('.popup__close-btn')
+const popupCloseButtons = document.querySelectorAll('.popup__close-btn')
 const imagePopupImg = imagePopup.querySelector('.popup__image');
 const imagePopupCaption = imagePopup.querySelector('.popup__caption')
 
@@ -50,59 +45,75 @@ const initialCards = [
 ];
 
 const addListenersToElement = (cardElement) => {
-    cardElement.querySelector('.element__delete-button').addEventListener('click', evt =>
-        evt.target.parentElement.parentElement.remove())
-    cardElement.querySelector('.element__like-button').addEventListener('click', evt => {
-        evt.target.classList.toggle('element__like-button_active')
-    })
-    cardElement.querySelector('.element__image').addEventListener('click', () => {
+    const elementTitle = cardElement.querySelector('.element__title')
+    const elementDeleteBtn = cardElement.querySelector('.element__delete-button')
+    const elementLikeBtn = cardElement.querySelector('.element__like-button')
+    const elementImg = cardElement.querySelector('.element__image')
+
+   elementDeleteBtn.addEventListener('click', evt =>
+        evt.target.closest('.elements-list__member').remove())
+
+    elementLikeBtn.addEventListener('click', evt =>
+        evt.target.classList.toggle('element__like-button_active'))
+
+    elementImg.addEventListener('click', () => {
         imagePopup.classList.add('popup_opened')
-        imagePopupImg.src = cardElement.querySelector('.element__image').src
-        imagePopupImg.alt = cardElement.querySelector('.element__title').textContent
-        imagePopupCaption.textContent = cardElement.querySelector('.element__title').textContent
+        imagePopupImg.src = elementImg.src
+        imagePopupImg.alt = elementTitle.textContent
+        imagePopupCaption.textContent = elementTitle.textContent
     })
 }
 
-initialCards.map(e => {
-    let cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
-    cardElement.querySelector('.element__title').textContent = e.name;
-    cardElement.querySelector('.element__image').src = e.link;
+const createCard = (title,img) => {
+    const cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
+    const elementTitle = cardElement.querySelector('.element__title')
+    const elementImg = cardElement.querySelector('.element__image')
+    elementTitle.textContent = title
+    elementImg.alt = title
+    elementImg.src = img
     addListenersToElement(cardElement)
-    cardContainer.append(cardElement)
+    return cardElement
+}
+
+const openPopup = (popup) => {
+    popup.classList.add('popup_opened')
+}
+
+const hidePopup = (popup) => {
+    popup.classList.remove('popup_opened')
+}
+
+initialCards.map(e => {
+    cardContainer.append(createCard(e.name,e.link))
 })
 
 addBtn.addEventListener('click', () => {
-    cardName.value = ''
-    cardImg.value = ''
     addPopup.classList.add('popup_opened')
 })
 
-addPopupCloseBtn.addEventListener('click', () => addPopup.classList.remove('popup_opened'));
-
 addPopupInputForm.addEventListener('submit', evt => {
     evt.preventDefault()
-    const cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
-    cardElement.querySelector('.element__title').textContent = cardName.value;
-    cardElement.querySelector('.element__image').src = cardImg.value;
-    cardElement.querySelector('.element__image').alt = cardName.value;
-    addListenersToElement(cardElement)
-    cardContainer.prepend(cardElement)
-    addPopup.classList.remove('popup_opened')
+    cardContainer.prepend(createCard(cardName.value, cardImg.value))
+    cardName.value = ''
+    cardImg.value = ''
+    hidePopup(addPopup)
 })
 
 editBtn.addEventListener('click', () => {
-    editPopup.classList.add('popup_opened')
+    openPopup(editPopup)
     profileName.value = name.textContent
     profileDesc.value = description.textContent
 })
-
-editPopupCloseBtn.addEventListener('click', () => editPopup.classList.remove('popup_opened'))
 
 editPopupInputForm.addEventListener('submit', evt => {
     evt.preventDefault()
     name.textContent = profileName.value
     description.textContent = profileDesc.value
-    editPopup.classList.remove('popup_opened')
+    hidePopup(editPopup)
 })
 
-imagePopupCloseButton.addEventListener('click', () => imagePopup.classList.remove('popup_opened'))
+popupCloseButtons.forEach(button => {
+    const popup = button.closest('.popup')
+    button.addEventListener('click', () => hidePopup(popup))
+})
+
