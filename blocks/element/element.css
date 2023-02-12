@@ -1,4 +1,5 @@
-.elements-list__member {
+.element {
+    position: relative;
     box-sizing: border-box;
     max-width: 282px;
     max-height: 361px;

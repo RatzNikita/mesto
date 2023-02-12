@@ -1,28 +1,26 @@
-let editPopup = document.querySelector('.popup_type_change')
-let addPopup = document.querySelector('.popup_type_add')
-
-let editBtn = document.querySelector('.profile__edit-button')
-let addBtn = document.querySelector('.profile__add-button')
-
-let changePopupCloseBtn = editPopup.querySelector('.popup__close-btn')
-let addPopupCloseBtn = addPopup.querySelector('.popup__close-btn')
-
-let editPopupInputForm = editPopup.querySelector('.popup__form')
-let addPopupInputForm = addPopup.querySelector('.popup__form')
-
-let profileName = document.querySelector('.profile__title')
-let profileDesc = document.querySelector('.profile__subtitle')
-
-let name = editPopup.querySelector('.popup__input_type_name')
-let description = editPopup.querySelector('.popup__input_type_description')
-
-let cardName = addPopup.querySelector('.popup__input_type_name')
-let cardImg = addPopup.querySelector('.popup__input_type_description')
-
-let cardContainer = document.querySelector('.elements-list')
-
+const name = document.querySelector('.profile__title')
+const description = document.querySelector('.profile__subtitle')
+const cardContainer = document.querySelector('.elements-list')
 const cardTemplate = document.querySelector('#element-template').content;
 
+const editPopup = document.querySelector('.popup_type_edit')
+const editBtn = document.querySelector('.profile__edit-button')
+const editPopupCloseBtn = editPopup.querySelector('.popup__close-btn')
+const editPopupInputForm = editPopup.querySelector('.popup__form')
+const profileName = editPopup.querySelector('.popup__input_type_name')
+const profileDesc = editPopup.querySelector('.popup__input_type_description')
+
+const addBtn = document.querySelector('.profile__add-button')
+const addPopup = document.querySelector('.popup_type_add')
+const addPopupCloseBtn = addPopup.querySelector('.popup__close-btn')
+const addPopupInputForm = addPopup.querySelector('.popup__form')
+const cardName = addPopup.querySelector('.popup__input_type_name')
+const cardImg = addPopup.querySelector('.popup__input_type_description')
+
+const imagePopup = document.querySelector('.popup_type_img')
+const imagePopupCloseButton = imagePopup.querySelector('.popup__close-btn')
+const imagePopupImg = imagePopup.querySelector('.popup__image');
+const imagePopupCaption = imagePopup.querySelector('.popup__caption')
 
 const initialCards = [
     {
@@ -51,53 +49,60 @@ const initialCards = [
     }
 ];
 
-    initialCards.map( e => {
-        const cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
-        cardElement.querySelector('.element__title').textContent = e.name;
-        cardElement.querySelector('.element__image').src = e.link;
-        cardContainer.append(cardElement)
+const addListenersToElement = (cardElement) => {
+    cardElement.querySelector('.element__delete-button').addEventListener('click', evt =>
+        evt.target.parentElement.parentElement.remove())
+    cardElement.querySelector('.element__like-button').addEventListener('click', evt => {
+        evt.target.classList.toggle('element__like-button_active')
     })
+    cardElement.querySelector('.element__image').addEventListener('click', () => {
+        imagePopup.classList.add('popup_opened')
+        imagePopupImg.src = cardElement.querySelector('.element__image').src
+        imagePopupImg.alt = cardElement.querySelector('.element__title').textContent
+        imagePopupCaption.textContent = cardElement.querySelector('.element__title').textContent
+    })
+}
 
-function addCard(evt) {
+initialCards.map(e => {
+    let cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
+    cardElement.querySelector('.element__title').textContent = e.name;
+    cardElement.querySelector('.element__image').src = e.link;
+    addListenersToElement(cardElement)
+    cardContainer.append(cardElement)
+})
+
+addBtn.addEventListener('click', () => {
+    cardName.value = ''
+    cardImg.value = ''
+    addPopup.classList.add('popup_opened')
+})
+
+addPopupCloseBtn.addEventListener('click', () => addPopup.classList.remove('popup_opened'));
+
+addPopupInputForm.addEventListener('submit', evt => {
     evt.preventDefault()
     const cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
     cardElement.querySelector('.element__title').textContent = cardName.value;
     cardElement.querySelector('.element__image').src = cardImg.value;
     cardElement.querySelector('.element__image').alt = cardName.value;
+    addListenersToElement(cardElement)
     cardContainer.prepend(cardElement)
-    hideAddPopup();
-}
-
-
-
-function changeProfile(evt) {
-    evt.preventDefault()
-    profileName.textContent = name.value
-    profileDesc.textContent = description.value
-    hideChangePopup()
-}
-
-
-
-function showEditPopup() {
-    editPopup.classList.add('popup_opened')
-    name.value = profileName.textContent
-    description.value = profileDesc.textContent
-}
-
-function hideChangePopup() {
-    editPopup.classList.remove('popup_opened')
-}
-
-function hideAddPopup() {
     addPopup.classList.remove('popup_opened')
-}
+})
 
-changePopupCloseBtn.addEventListener('click', hideChangePopup)
-addPopupCloseBtn.addEventListener('click',hideAddPopup);
+editBtn.addEventListener('click', () => {
+    editPopup.classList.add('popup_opened')
+    profileName.value = name.textContent
+    profileDesc.value = description.textContent
+})
 
-editBtn.addEventListener('click', showEditPopup)
-addBtn.addEventListener('click', () => addPopup.classList.add('popup_opened'))
+editPopupCloseBtn.addEventListener('click', () => editPopup.classList.remove('popup_opened'))
 
-editPopupInputForm.addEventListener('submit', changeProfile)
-addPopupInputForm.addEventListener('submit',addCard)
+editPopupInputForm.addEventListener('submit', evt => {
+    evt.preventDefault()
+    name.textContent = profileName.value
+    description.textContent = profileDesc.value
+    editPopup.classList.remove('popup_opened')
+})
+
+imagePopupCloseButton.addEventListener('click', () => imagePopup.classList.remove('popup_opened'))
