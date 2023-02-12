@@ -57,7 +57,7 @@ const addListenersToElement = (cardElement) => {
         evt.target.classList.toggle('element__like-button_active'))
 
     elementImg.addEventListener('click', () => {
-        imagePopup.classList.add('popup_opened')
+        openPopup(imagePopup)
         imagePopupImg.src = elementImg.src
         imagePopupImg.alt = elementTitle.textContent
         imagePopupCaption.textContent = elementTitle.textContent
@@ -88,7 +88,7 @@ initialCards.map(e => {
 })
 
 addBtn.addEventListener('click', () => {
-    addPopup.classList.add('popup_opened')
+    openPopup(addPopup)
 })
 
 addPopupInputForm.addEventListener('submit', evt => {
