@@ -17,6 +17,10 @@ const popupCloseButtons = document.querySelectorAll('.popup__close-btn')
 const imagePopupImg = imagePopup.querySelector('.popup__image');
 const imagePopupCaption = imagePopup.querySelector('.popup__caption')
 
+const popupContainers = document.querySelectorAll('.popup__container, .popup__image-container')
+const popups = document.querySelectorAll('.popup')
+
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -50,7 +54,7 @@ const addListenersToElement = (cardElement) => {
     const elementLikeBtn = cardElement.querySelector('.element__like-button')
     const elementImg = cardElement.querySelector('.element__image')
 
-   elementDeleteBtn.addEventListener('click', evt =>
+    elementDeleteBtn.addEventListener('click', evt =>
         evt.target.closest('.elements-list__member').remove())
 
     elementLikeBtn.addEventListener('click', evt =>
@@ -64,7 +68,7 @@ const addListenersToElement = (cardElement) => {
     })
 }
 
-const createCard = (title,img) => {
+const createCard = (title, img) => {
     const cardElement = cardTemplate.querySelector('.elements-list__member').cloneNode(true);
     const elementTitle = cardElement.querySelector('.element__title')
     const elementImg = cardElement.querySelector('.element__image')
@@ -75,16 +79,26 @@ const createCard = (title,img) => {
     return cardElement
 }
 
+const hidePopupOnEscapeKeydown = (evt) => {
+    if (evt.key === 'Escape') {
+        popups.forEach(popup => {
+            popup.classList.contains('popup_opened') ? hidePopup(popup) : null
+        })
+    }
+}
+
 const openPopup = (popup) => {
     popup.classList.add('popup_opened')
+    document.addEventListener('keydown', hidePopupOnEscapeKeydown)
 }
 
 const hidePopup = (popup) => {
     popup.classList.remove('popup_opened')
+    document.removeEventListener('keydown',hidePopupOnEscapeKeydown)
 }
 
 initialCards.map(e => {
-    cardContainer.append(createCard(e.name,e.link))
+    cardContainer.append(createCard(e.name, e.link))
 })
 
 addBtn.addEventListener('click', () => {
@@ -116,4 +130,38 @@ popupCloseButtons.forEach(button => {
     const popup = button.closest('.popup')
     button.addEventListener('click', () => hidePopup(popup))
 })
+
+popupContainers.forEach(e => {
+    e.addEventListener('click', evt => {
+        evt.stopPropagation()
+    })
+})
+
+popups.forEach(popupElement => {
+    popupElement.addEventListener('click', evt => {
+        if (popupElement.classList.contains('popup_opened')) {
+            hidePopup(popupElement)
+        }
+    })
+})
+
+
+
+// document.addEventListener('keydown', evt => {
+//     if (evt.key === 'Escape') {
+//         popups.forEach(popup => {
+//             popup.classList.contains('popup_opened') ? hidePopup(popup) : null
+//         })
+//     }
+// })
+
+
+
+
+
+
+
+
+
+
 

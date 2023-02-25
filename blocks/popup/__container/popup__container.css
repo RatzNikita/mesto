@@ -7,7 +7,7 @@
     min-width: 282px;
     max-height: 322px;
     z-index: 1;
-
+    cursor: default;
 }
 
 @media (min-width: 768px) {
