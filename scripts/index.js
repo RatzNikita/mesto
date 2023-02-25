@@ -55,7 +55,7 @@ const addListenersToElement = (cardElement) => {
     const elementImg = cardElement.querySelector('.element__image')
 
     elementDeleteBtn.addEventListener('click', evt =>
-        evt.target.closest('.elements-list__member').remove())
+        cardElement.remove())
 
     elementLikeBtn.addEventListener('click', evt =>
         evt.target.classList.toggle('element__like-button_active'))
@@ -80,16 +80,22 @@ const createCard = (title, img) => {
 }
 
 const hidePopupOnEscapeKeydown = (evt) => {
+    const openedPopup = document.querySelector('.popup_opened')
     if (evt.key === 'Escape') {
-        popups.forEach(popup => {
-            popup.classList.contains('popup_opened') ? hidePopup(popup) : null
-        })
+        hidePopup(openedPopup)
     }
 }
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened')
     document.addEventListener('keydown', hidePopupOnEscapeKeydown)
+
+}
+
+const disableSubmitBtn = (popup) => {
+    const popupSubmitBtn = popup.querySelector('.popup__submit-btn')
+    popupSubmitBtn.disabled = true;
+    popupSubmitBtn.classList.add('popup__submit-btn_disabled')
 }
 
 const hidePopup = (popup) => {
@@ -103,6 +109,7 @@ initialCards.map(e => {
 
 addBtn.addEventListener('click', () => {
     openPopup(addPopup)
+    disableSubmitBtn(addPopup)
 })
 
 addPopupInputForm.addEventListener('submit', evt => {
@@ -111,10 +118,12 @@ addPopupInputForm.addEventListener('submit', evt => {
     cardName.value = ''
     cardImg.value = ''
     hidePopup(addPopup)
+
 })
 
 editBtn.addEventListener('click', () => {
     openPopup(editPopup)
+    disableSubmitBtn(editPopup)
     profileName.value = name.textContent
     profileDesc.value = description.textContent
 })
@@ -146,14 +155,6 @@ popups.forEach(popupElement => {
 })
 
 
-
-// document.addEventListener('keydown', evt => {
-//     if (evt.key === 'Escape') {
-//         popups.forEach(popup => {
-//             popup.classList.contains('popup_opened') ? hidePopup(popup) : null
-//         })
-//     }
-// })
 
 
 

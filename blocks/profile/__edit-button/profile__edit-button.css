@@ -8,6 +8,7 @@
     align-self: center;
     transition: .3s ease-out;
     margin-top: 2px;
+    margin-right: 10px;
     cursor: pointer;
 }
 
