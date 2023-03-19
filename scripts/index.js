@@ -4,7 +4,6 @@ import FormValidator from "./FormValidator.js";
 const name = document.querySelector('.profile__title')
 const description = document.querySelector('.profile__subtitle')
 const cardContainer = document.querySelector('.elements-list')
-const cardTemplate = document.querySelector('#element-template').content;
 const editPopup = document.querySelector('.popup_type_edit')
 const editBtn = document.querySelector('.profile__edit-button')
 const editPopupInputForm = editPopup.querySelector('.popup__form')
@@ -12,21 +11,21 @@ const profileName = editPopup.querySelector('.popup__input_type_name')
 const profileDesc = editPopup.querySelector('.popup__input_type_description')
 const addBtn = document.querySelector('.profile__add-button')
 const addPopup = document.querySelector('.popup_type_add')
-const addPopupInputForm = addPopup.querySelector('.popup__form')
+const popupInputForm = addPopup.querySelector('.popup__form')
 const cardName = addPopup.querySelector('.popup__input_type_name')
 const cardImg = addPopup.querySelector('.popup__input_type_description')
 const popupCloseButtons = document.querySelectorAll('.popup__close-btn')
-const popupContainers = document.querySelectorAll('.popup__container, .popup__image-container')
 const popups = document.querySelectorAll('.popup')
-const cardFormElement = document.getElementsByName('card-form')[0]
-const profileFormElement = document.getElementsByName('profile-form')[0]
+const cardFormElement = document.getElementById('card-form')
+const profileFormElement = document.getElementById('profile-form')
 
 const selectors = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-btn',
     inactiveButtonClass: 'popup__submit-btn_disabled',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'}
+    errorClass: 'popup__error_visible'
+}
 
 
 const initialCards = [
@@ -56,10 +55,13 @@ const initialCards = [
     }
 ];
 
+const createCard = (title, image) => {
+    return new Card(document.querySelector('#element-template'), title, image)
+}
 
 const hidePopupOnEscapeKeydown = (evt) => {
-    const openedPopup = document.querySelector('.popup_opened')
     if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened')
         hidePopup(openedPopup)
     }
 }
@@ -70,30 +72,25 @@ export const openPopup = (popup) => {
 
 }
 
-const disableSubmitBtn = (popup) => {
-    const popupSubmitBtn = popup.querySelector('.popup__submit-btn')
-    popupSubmitBtn.disabled = true;
-    popupSubmitBtn.classList.add('popup__submit-btn_disabled')
-}
-
 const hidePopup = (popup) => {
     popup.classList.remove('popup_opened')
-    document.removeEventListener('keydown',hidePopupOnEscapeKeydown)
+    document.removeEventListener('keydown', hidePopupOnEscapeKeydown)
 }
 
-initialCards.map(e => {
-    const card = new Card(cardTemplate,e.name, e.link)
+initialCards.forEach(e => {
+    const card = createCard(e.name, e.link)
     cardContainer.append(card.generateCard())
 })
 
 addBtn.addEventListener('click', () => {
+    newCardValidation.resetValidation();
     openPopup(addPopup)
-    disableSubmitBtn(addPopup)
+
 })
 
-addPopupInputForm.addEventListener('submit', evt => {
+popupInputForm.addEventListener('submit', evt => {
     evt.preventDefault()
-    const card = new Card(cardTemplate,cardName.value, cardImg.value)
+    const card = createCard(cardName.value, cardImg.value)
     cardContainer.prepend(card.generateCard())
     cardName.value = ''
     cardImg.value = ''
@@ -102,10 +99,10 @@ addPopupInputForm.addEventListener('submit', evt => {
 })
 
 editBtn.addEventListener('click', () => {
-    openPopup(editPopup)
-    disableSubmitBtn(editPopup)
     profileName.value = name.textContent
     profileDesc.value = description.textContent
+    profileValidation.resetValidation();
+    openPopup(editPopup)
 })
 
 editPopupInputForm.addEventListener('submit', evt => {
@@ -113,6 +110,7 @@ editPopupInputForm.addEventListener('submit', evt => {
     name.textContent = profileName.value
     description.textContent = profileDesc.value
     hidePopup(editPopup)
+
 })
 
 popupCloseButtons.forEach(button => {
@@ -120,28 +118,20 @@ popupCloseButtons.forEach(button => {
     button.addEventListener('click', () => hidePopup(popup))
 })
 
-popupContainers.forEach(e => {
-    e.addEventListener('click', evt => {
-        evt.stopPropagation()
-    })
-})
 
 popups.forEach(popupElement => {
-    popupElement.addEventListener('click', () => {
-        if (popupElement.classList.contains('popup_opened')) {
+    popupElement.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
             hidePopup(popupElement)
         }
     })
 })
 
 
-const validateForm = (formElement) => {
-    const formValidator = new FormValidator(selectors,formElement)
-    formValidator.enableValidation()
-}
-
-validateForm(cardFormElement)
-validateForm(profileFormElement)
+const profileValidation = new FormValidator(selectors, profileFormElement);
+const newCardValidation = new FormValidator(selectors, cardFormElement);
+profileValidation.enableValidation();
+newCardValidation.enableValidation();
 
 
 
