@@ -1,21 +1,21 @@
 class FormValidator {
 
     constructor(selectors, formElement) {
-        this.selectors = selectors
-        this.formElement = formElement
+        this._selectors = selectors
+        this._formElement = formElement
     }
 
     _showInputError(inputElement, errorMessage) {
-        const errorElement = this.formElement.querySelector(`.${inputElement.name}-error`);
-        inputElement.classList.add(this.selectors.inputErrorClass);
+        const errorElement = this._formElement.querySelector(`.${inputElement.name}-error`);
+        inputElement.classList.add(this._selectors.inputErrorClass);
         errorElement.textContent = errorMessage;
-        errorElement.classList.add(this.selectors.errorClass);
+        errorElement.classList.add(this._selectors.errorClass);
     };
 
     _hideInputError(inputElement) {
-        const errorElement = this.formElement.querySelector(`.${inputElement.name}-error`);
-        inputElement.classList.remove(this.selectors.inputErrorClass);
-        errorElement.classList.remove(this.selectors.errorClass);
+        const errorElement = this._formElement.querySelector(`.${inputElement.name}-error`);
+        inputElement.classList.remove(this._selectors.inputErrorClass);
+        errorElement.classList.remove(this._selectors.errorClass);
         errorElement.textContent = '';
     };
 
@@ -26,8 +26,8 @@ class FormValidator {
     }
 
     _setEventListeners() {
-        this._inputList = Array.from(this.formElement.querySelectorAll(this.selectors.inputSelector));
-        this._buttonElement = this.formElement.querySelector(this.selectors.submitButtonSelector)
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._selectors.inputSelector));
+        this._buttonElement = this._formElement.querySelector(this._selectors.submitButtonSelector)
 
         this._toggleButtonState();
 
@@ -50,10 +50,10 @@ class FormValidator {
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this.selectors.inactiveButtonClass)
+            this._buttonElement.classList.add(this._selectors.inactiveButtonClass)
             this._buttonElement.disabled = true;
         } else {
-            this._buttonElement.classList.remove(this.selectors.inactiveButtonClass)
+            this._buttonElement.classList.remove(this._selectors.inactiveButtonClass)
             this._buttonElement.disabled = false;
         }
     }
