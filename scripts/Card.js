@@ -13,7 +13,8 @@ class Card {
     }
 
     _getTemplate() {
-        return this._cardTemplateSelector
+        return document
+            .querySelector(this._cardTemplateSelector)
             .content
             .querySelector('.elements-list__member')
             .cloneNode(true);

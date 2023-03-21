@@ -56,7 +56,7 @@ const initialCards = [
 ];
 
 const createCard = (title, image) => {
-    return new Card(document.querySelector('#element-template'), title, image)
+    return new Card('#element-template', title, image).generateCard();
 }
 
 const hidePopupOnEscapeKeydown = (evt) => {
@@ -79,7 +79,7 @@ const hidePopup = (popup) => {
 
 initialCards.forEach(e => {
     const card = createCard(e.name, e.link)
-    cardContainer.append(card.generateCard())
+    cardContainer.append(card)
 })
 
 addBtn.addEventListener('click', () => {
@@ -91,7 +91,7 @@ addBtn.addEventListener('click', () => {
 popupInputForm.addEventListener('submit', evt => {
     evt.preventDefault()
     const card = createCard(cardName.value, cardImg.value)
-    cardContainer.prepend(card.generateCard())
+    cardContainer.prepend(card)
     cardName.value = ''
     cardImg.value = ''
     hidePopup(addPopup)
