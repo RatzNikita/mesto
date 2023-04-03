@@ -6,7 +6,6 @@
     <meta content="Проектная работа для Яндекс.Практикума" name="description">
     <meta content="html,css, js" name="keywords">
     <meta content="Рац Никита" name="author">
-    <link href="./pages/index.css" rel="stylesheet">
     <title>Место</title>
 </head>
 <body>
@@ -14,13 +13,13 @@
     <header class="header">
         <img alt="Логотип сайта"
              class="header__logo"
-             src="images/logo-white.png">
+             src="<%=require('./images/logo-white.png')%>">
     </header>
     <main class="content">
         <section class="profile">
             <img alt="Фотография Жака-Ива Кусто"
                  class="profile__photo"
-                 src="images/custo.jpg">
+                 src="<%=require('./images/custo.jpg')%>">
             <div class="profile__text-content">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <p class="profile__subtitle">Исследователь океана</p>
@@ -104,6 +103,5 @@
         </article>
     </li>
 </template>
-<script type="module" src="scripts/index.js"></script>
 </body>
 </html>

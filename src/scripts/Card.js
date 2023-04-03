@@ -1,15 +1,11 @@
-import {openPopup} from "./index.js";
-
-const imagePopup = document.querySelector('.popup_type_img')
-const imagePopupImg = imagePopup.querySelector('.popup__image');
-const imagePopupCaption = imagePopup.querySelector('.popup__caption')
 
 class Card {
 
-    constructor(cardTemplateSelector, title, img) {
+    constructor(cardTemplateSelector, title, img, handleCardClick) {
         this._cardTemplateSelector = cardTemplateSelector;
         this._title = title;
         this._img = img;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -38,15 +34,9 @@ class Card {
 
         this._elementDeleteBtn.addEventListener('click', () => this._deleteBtnClickCallback())
         this._elementLikeBtn.addEventListener('click', () => this._likeBtnClickCallback())
-        this._elementImg.addEventListener('click', () => this._imageClickCallback())
+        this._elementImg.addEventListener('click', () => this._handleCardClick())
     }
 
-    _imageClickCallback() {
-        openPopup(imagePopup)
-        imagePopupImg.src = this._img
-        imagePopupImg.alt = this._title
-        imagePopupCaption.textContent = this._title
-    }
 
     _likeBtnClickCallback() {
         this._elementLikeBtn.classList.toggle('element__like-button_active')
