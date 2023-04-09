@@ -69,7 +69,6 @@ const setPrevValuesOnProfilePopup = () => {
     const actualUserInfo = userInfo.getUserInfo();
     popupNameInput.value = actualUserInfo.name
     popupDescInput.value = actualUserInfo.desc
-
 }
 
 const profileValidation = new FormValidator(selectors, profileFormElement);
