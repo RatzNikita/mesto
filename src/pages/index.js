@@ -15,6 +15,8 @@ const editPopupSelector = '.popup_type_edit'
 const addPopupSelector = '.popup_type_add'
 const cardFormElement = document.getElementById('card-form')
 const profileFormElement = document.getElementById('profile-form')
+const popupNameInput = profileFormElement.querySelector('.popup__input_type_name')
+const popupDescInput = profileFormElement.querySelector('.popup__input_type_description')
 
 const userInfo = new UserInfo({
     nameSelector: '.profile__title', descriptionSelector: '.profile__subtitle'
@@ -38,7 +40,8 @@ imagePopup.setEventListeners();
 
 const popupAddCard = new PopupWithForm(addPopupSelector, (evt, inputs) => {
     evt.preventDefault();
-    cards.renderer({name: inputs['place-name-input'], link: inputs['img-input']})
+    const card = createCard(inputs['place-name-input'], inputs['img-input'])
+    cards.addItem(card)
     popupAddCard.close()
 
 })
@@ -64,8 +67,6 @@ editBtn.addEventListener('click', () => {
 
 const setPrevValuesOnProfilePopup = () => {
     const actualUserInfo = userInfo.getUserInfo();
-    const popupNameInput = profileFormElement.querySelector('.popup__input_type_name')
-    const popupDescInput = profileFormElement.querySelector('.popup__input_type_description')
     popupNameInput.value = actualUserInfo.name
     popupDescInput.value = actualUserInfo.desc
 
