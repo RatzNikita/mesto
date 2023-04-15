@@ -1,11 +1,13 @@
 
 class Card {
 
-    constructor(cardTemplateSelector, title, img, handleCardClick) {
+    constructor(cardTemplateSelector, title, img, handleCardClick,deletePopup,id) {
         this._cardTemplateSelector = cardTemplateSelector;
         this._title = title;
         this._img = img;
         this._handleCardClick = handleCardClick;
+        this._deletePopup = deletePopup
+        this._id = id
     }
 
     _getTemplate() {
@@ -44,8 +46,7 @@ class Card {
     }
 
     _deleteBtnClickCallback() {
-        this.cardElement.remove()
-        this.cardElement = null;
+        this._deletePopup.deleteCard(this._id)
     }
 
 
