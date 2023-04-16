@@ -2,30 +2,25 @@ import Popup from "./Popup";
 
 class DeletePopup extends Popup {
 
-    constructor(popupSelector,submitCallback) {
+    constructor(popupSelector) {
         super(popupSelector);
-        this._submitCallback = submitCallback;
-        this._popupForm = this._popupElement.querySelector('.popup__form')
+        this._confirmButton = document.querySelector('.button_confirm-delete')
     }
 
-
-    deleteCard(id) {
-        this._cardId = id;
-        super.open();
-
+    confirmDeleteCallback(callback) {
+        this._confirmCallback = callback
     }
 
     setEventListeners() {
         super.setEventListeners()
-        this._inputForm = this._popupElement.querySelector('.popup__form')
-        this._inputForm.addEventListener('submit', (evt) => {
-            this._submitCallback(evt,this._cardId)
+        this._confirmButton.addEventListener('click', (evt) => {
+            evt.preventDefault()
+            this._confirmCallback()
         })
     }
 
     close() {
         super.close();
-
     }
 }
 
