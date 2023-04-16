@@ -4,7 +4,7 @@ class DeletePopup extends Popup {
 
     constructor(popupSelector) {
         super(popupSelector);
-        this._confirmButton = document.querySelector('.button_confirm-delete')
+        this._confirmButton = document.querySelector('.button__confirm-delete')
     }
 
     confirmDeleteCallback(callback) {
