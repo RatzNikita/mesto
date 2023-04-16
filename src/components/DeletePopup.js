@@ -4,7 +4,7 @@ class DeletePopup extends Popup {
 
     constructor(popupSelector) {
         super(popupSelector);
-        this._confirmButton = document.querySelector('.button__confirm-delete')
+        this._popupForm = this._popupElement.querySelector('.popup__form')
     }
 
     confirmDeleteCallback(callback) {
@@ -13,7 +13,7 @@ class DeletePopup extends Popup {
 
     setEventListeners() {
         super.setEventListeners()
-        this._confirmButton.addEventListener('click', (evt) => {
+        this._popupForm.addEventListener('submit', (evt) => {
             evt.preventDefault()
             this._confirmCallback()
         })
