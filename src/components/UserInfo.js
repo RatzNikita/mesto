@@ -13,6 +13,7 @@ class UserInfo {
         }
     }
 
+
     setUserInfo(name, desc, id) {
         this._name.textContent = name
         this._description.textContent = desc

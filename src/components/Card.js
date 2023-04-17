@@ -56,14 +56,9 @@ class Card {
         this._elementLikeBtn.addEventListener('click', () => this._handleLikeClick())
         this._elementImg.addEventListener('click', () => this._handleCardClick())
         this._elementDeleteBtn = this.cardElement.querySelector('.element__delete-button')
-        this._elementDeleteBtn.addEventListener('click', (evt) => this._handleDeleteClick(evt))
-        this._checkDelete()
-    }
-
-    _checkDelete() {
-        if (this._ownerId !== this._userId) {
-            this.cardElement.querySelector('.element__delete-button').remove();
-        }
+        this._ownerId === this._userId
+            ? this._elementDeleteBtn.addEventListener('click', () => this._handleDeleteClick())
+            : this.cardElement.querySelector('.element__delete-button').remove()
     }
 
     setLikesCount(data) {
