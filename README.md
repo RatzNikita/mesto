@@ -1,30 +1,30 @@
-#  Проект Место
-Учебный проект по адаптивной вёрстке и базовому JavaScript
+#  Project 'Mesto'
+Educational project on adaptive layout and basic JavaScript
 ---------
-#### Проект представляет собой приложение в котором пользователь сможет создавать карточки мест
+#### The project is an application in which the user will be able to create place cards
 
-На данный момент пользователь может:
-* с помощью кнопок вписать имя и информацию о себе.
-* добавлять новые карточки через специальную форму
-* ставить лайки на карточки
-* удалять карточки 
+At the moment, the user can:
+* use the buttons to enter your name and information about yourself..
+* add new cards through a special form
+* like cards
+* delete cards 
 
-В проекте используются:
-* медиазапросы
-* флекс-контейнеры 
-* скрипты
-* грид-сетки
-* стрелочные функции
-* организованная по БЭМ файловая структура
-*  динамическая валидация форм
-* классы
-* работа с API
+The project uses:
+* media queries
+* flex-boxes 
+* scripts
+* grid layouts
+* arrow functions
+* BEM organized file structure
+* dinamic form validation
+* classes
+* working with API
 
 ---------------------------
-#### Планы по доработке
+#### Improvement plans
 
-Написать бэк для приложения
+Add backend to the application
 ---------------------------
-Проект можно посмотреть на Github Pages:
+The project can be viewed on Github Pages:
 
 https://ratznikita.github.io/mesto/
